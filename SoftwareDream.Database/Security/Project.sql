@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [Project]
+    AUTHORIZATION [rnd];
+

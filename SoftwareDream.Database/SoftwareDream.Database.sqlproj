@@ -14,7 +14,7 @@
     </RootPath>
     <RootNamespace>SoftwareDream.Database</RootNamespace>
     <AssemblyName>SoftwareDream.Database</AssemblyName>
-    <ModelCollation>1033, CI</ModelCollation>
+    <ModelCollation>1063,CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
@@ -23,6 +23,8 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>Lithuanian_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -57,5 +59,37 @@
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="Common\" />
+    <Folder Include="Common\Tables\" />
+    <Folder Include="Credentials\" />
+    <Folder Include="Credentials\Tables\" />
+    <Folder Include="Project\" />
+    <Folder Include="Project\Tables\" />
+    <Folder Include="Classifications\" />
+    <Folder Include="Classifications\Tables\" />
+    <Folder Include="Security\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Common\Tables\Users.sql" />
+    <Build Include="Credentials\Tables\Local.sql" />
+    <Build Include="Credentials\Tables\Facebook.sql" />
+    <Build Include="Credentials\Tables\Twitter.sql" />
+    <Build Include="Credentials\Tables\GPlus.sql" />
+    <Build Include="Credentials\Tables\LinkedIn.sql" />
+    <Build Include="Project\Tables\Donations.sql" />
+    <Build Include="Project\Tables\Main.sql" />
+    <Build Include="Project\Tables\LikesCounter.sql" />
+    <Build Include="Project\Tables\Info.sql" />
+    <Build Include="Common\Tables\Counters.sql" />
+    <Build Include="Classifications\Tables\ProjectState.sql" />
+    <Build Include="Classifications\Tables\CredentialsType.sql" />
+    <Build Include="Security\rnd.sql" />
+    <Build Include="Security\ATEALT_julius.rachmanas.sql" />
+    <Build Include="Security\ATEALT_julius_1.rachmanas.sql" />
+    <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="Security\Classifications.sql" />
+    <Build Include="Security\Common.sql" />
+    <Build Include="Security\Credentials.sql" />
+    <Build Include="Security\Project.sql" />
   </ItemGroup>
 </Project>
