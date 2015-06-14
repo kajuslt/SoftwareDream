@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareDream", "SoftwareDream\SoftwareDream.csproj", "{0B94B117-DC59-4C29-84A7-EFB37BA6699E}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{0321991E-2978-44F5-96A5-D500FBD66A99}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SoftwareDream.Database", "SoftwareDream.Database\SoftwareDream.Database.sqlproj", "{237336B6-1693-416E-B23D-4E91A670A07D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{3F2A26D5-4740-464C-B775-C98AF91670AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,10 @@ Global
 		{237336B6-1693-416E-B23D-4E91A670A07D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{237336B6-1693-416E-B23D-4E91A670A07D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{237336B6-1693-416E-B23D-4E91A670A07D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{3F2A26D5-4740-464C-B775-C98AF91670AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F2A26D5-4740-464C-B775-C98AF91670AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F2A26D5-4740-464C-B775-C98AF91670AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F2A26D5-4740-464C-B775-C98AF91670AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

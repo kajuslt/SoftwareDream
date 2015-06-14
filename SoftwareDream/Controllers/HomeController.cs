@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DataAccess.Entities;
 
 namespace SoftwareDream.Controllers
 {
@@ -10,7 +11,11 @@ namespace SoftwareDream.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            using (var obj = new SoftwareDreamEntities())
+            {
+                return View(obj.Mains.ToList());
+            }
+           
         }
 
         public ActionResult About()

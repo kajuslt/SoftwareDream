@@ -1,0 +1,887 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SoftwareDreamModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CredentialsType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="ProjectState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectStateName" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Counters">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="UserIp" Type="varchar" MaxLength="15" />
+          <Property Name="DateTime" Type="datetime" />
+          <Property Name="ProjectId" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CredentialsTypeId" Type="smallint" />
+        </EntityType>
+        <EntityType Name="Facebook">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="FacebookUserId" Type="varchar" MaxLength="255" />
+          <Property Name="FacebookAccessToken" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="GPlus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="GPlusUserId" Type="varchar" MaxLength="255" />
+          <Property Name="GPlusAccessToken" Type="varchar" MaxLength="255" />
+          <Property Name="GPlusDisplayName" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LinkedIn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="LinkedInUserId" Type="varchar" MaxLength="255" />
+          <Property Name="LinkedInAccessToken" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Local">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Email" Type="varchar" MaxLength="254" />
+          <Property Name="Password" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Twitter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="TwitterUserId" Type="varchar" MaxLength="255" />
+          <Property Name="TwitterAccessToken" Type="varchar" MaxLength="255" />
+          <Property Name="TwitterDisplayName" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Donations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="ProjectId" Type="int" />
+          <Property Name="Date" Type="date" />
+          <Property Name="AmountOfDonation" Type="numeric" Precision="17" Scale="2" />
+        </EntityType>
+        <EntityType Name="Info">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectId" Type="int" />
+          <Property Name="Title" Type="varchar" MaxLength="100" />
+          <Property Name="ShortDescription" Type="varchar" MaxLength="360" />
+          <Property Name="TechnicalDescription" Type="varchar(max)" />
+          <Property Name="AnalysisDocumentId" Type="int" />
+        </EntityType>
+        <EntityType Name="LikesCounter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectId" Type="int" />
+          <Property Name="LikesGathered" Type="int" />
+        </EntityType>
+        <EntityType Name="Main">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreatedByUserId" Type="int" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="LikeCounterId" Type="int" />
+          <Property Name="LikesRequiredTotal" Type="int" />
+          <Property Name="DonationsId" Type="int" />
+          <Property Name="DonationsRequiredTotal" Type="numeric" Precision="17" Scale="2" />
+          <Property Name="IconId" Type="int" />
+        </EntityType>
+        <Association Name="FK__Counters__Projec__276EDEB3">
+          <End Role="Main" Type="Self.Main" Multiplicity="0..1" />
+          <End Role="Counters" Type="Self.Counters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Main">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Counters">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Counters__UserId__286302EC">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Counters" Type="Self.Counters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Counters">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Donations__Proje__31EC6D26">
+          <End Role="Main" Type="Self.Main" Multiplicity="0..1" />
+          <End Role="Donations" Type="Self.Donations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Main">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Donations">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Donations__UserI__32E0915F">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Donations" Type="Self.Donations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Donations">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Facebook__UserId__2D27B809">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Facebook" Type="Self.Facebook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Facebook">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GPlus__UserId__2B3F6F97">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="GPlus" Type="Self.GPlus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GPlus">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Info__ProjectId__2F10007B">
+          <End Role="Main" Type="Self.Main" Multiplicity="0..1" />
+          <End Role="Info" Type="Self.Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Main">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Info">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LikesCoun__Proje__300424B4">
+          <End Role="Main" Type="Self.Main" Multiplicity="0..1" />
+          <End Role="LikesCounter" Type="Self.LikesCounter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Main">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LikesCounter">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LinkedIn__UserId__2A4B4B5E">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="LinkedIn" Type="Self.LinkedIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LinkedIn">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Local__UserId__2E1BDC42">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Local" Type="Self.Local" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Local">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Main__StateId__30F848ED">
+          <End Role="ProjectState" Type="Self.ProjectState" Multiplicity="0..1" />
+          <End Role="Main" Type="Self.Main" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectState">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Main">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Twitter__UserId__2C3393D0">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Twitter" Type="Self.Twitter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Twitter">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__Credentia__29572725">
+          <End Role="CredentialsType" Type="Self.CredentialsType" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CredentialsType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="CredentialsTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SoftwareDreamModelStoreContainer">
+          <EntitySet Name="CredentialsType" EntityType="Self.CredentialsType" Schema="Classifications" store:Type="Tables" />
+          <EntitySet Name="ProjectState" EntityType="Self.ProjectState" Schema="Classifications" store:Type="Tables" />
+          <EntitySet Name="Counters" EntityType="Self.Counters" Schema="Common" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="Common" store:Type="Tables" />
+          <EntitySet Name="Facebook" EntityType="Self.Facebook" Schema="Credentials" store:Type="Tables" />
+          <EntitySet Name="GPlus" EntityType="Self.GPlus" Schema="Credentials" store:Type="Tables" />
+          <EntitySet Name="LinkedIn" EntityType="Self.LinkedIn" Schema="Credentials" store:Type="Tables" />
+          <EntitySet Name="Local" EntityType="Self.Local" Schema="Credentials" store:Type="Tables" />
+          <EntitySet Name="Twitter" EntityType="Self.Twitter" Schema="Credentials" store:Type="Tables" />
+          <EntitySet Name="Donations" EntityType="Self.Donations" Schema="Project" store:Type="Tables" />
+          <EntitySet Name="Info" EntityType="Self.Info" Schema="Project" store:Type="Tables" />
+          <EntitySet Name="LikesCounter" EntityType="Self.LikesCounter" Schema="Project" store:Type="Tables" />
+          <EntitySet Name="Main" EntityType="Self.Main" Schema="Project" store:Type="Tables" />
+          <AssociationSet Name="FK__Counters__Projec__276EDEB3" Association="Self.FK__Counters__Projec__276EDEB3">
+            <End Role="Main" EntitySet="Main" />
+            <End Role="Counters" EntitySet="Counters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Counters__UserId__286302EC" Association="Self.FK__Counters__UserId__286302EC">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Counters" EntitySet="Counters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Donations__Proje__31EC6D26" Association="Self.FK__Donations__Proje__31EC6D26">
+            <End Role="Main" EntitySet="Main" />
+            <End Role="Donations" EntitySet="Donations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Donations__UserI__32E0915F" Association="Self.FK__Donations__UserI__32E0915F">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Donations" EntitySet="Donations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Facebook__UserId__2D27B809" Association="Self.FK__Facebook__UserId__2D27B809">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Facebook" EntitySet="Facebook" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GPlus__UserId__2B3F6F97" Association="Self.FK__GPlus__UserId__2B3F6F97">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="GPlus" EntitySet="GPlus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Info__ProjectId__2F10007B" Association="Self.FK__Info__ProjectId__2F10007B">
+            <End Role="Main" EntitySet="Main" />
+            <End Role="Info" EntitySet="Info" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LikesCoun__Proje__300424B4" Association="Self.FK__LikesCoun__Proje__300424B4">
+            <End Role="Main" EntitySet="Main" />
+            <End Role="LikesCounter" EntitySet="LikesCounter" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LinkedIn__UserId__2A4B4B5E" Association="Self.FK__LinkedIn__UserId__2A4B4B5E">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="LinkedIn" EntitySet="LinkedIn" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Local__UserId__2E1BDC42" Association="Self.FK__Local__UserId__2E1BDC42">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Local" EntitySet="Local" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Main__StateId__30F848ED" Association="Self.FK__Main__StateId__30F848ED">
+            <End Role="ProjectState" EntitySet="ProjectState" />
+            <End Role="Main" EntitySet="Main" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Twitter__UserId__2C3393D0" Association="Self.FK__Twitter__UserId__2C3393D0">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Twitter" EntitySet="Twitter" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__Credentia__29572725" Association="Self.FK__Users__Credentia__29572725">
+            <End Role="CredentialsType" EntitySet="CredentialsType" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SoftwareDreamModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CredentialsType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Users__Credentia__29572725" FromRole="CredentialsType" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="ProjectState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectStateName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Mains" Relationship="Self.FK__Main__StateId__30F848ED" FromRole="ProjectState" ToRole="Main" />
+        </EntityType>
+        <EntityType Name="Counter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="UserIp" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="DateTime" Type="DateTime" Precision="3" />
+          <Property Name="ProjectId" Type="Int32" />
+          <NavigationProperty Name="Main" Relationship="Self.FK__Counters__Projec__276EDEB3" FromRole="Counters" ToRole="Main" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Counters__UserId__286302EC" FromRole="Counters" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CredentialsTypeId" Type="Int16" />
+          <NavigationProperty Name="CredentialsType" Relationship="Self.FK__Users__Credentia__29572725" FromRole="Users" ToRole="CredentialsType" />
+          <NavigationProperty Name="Counters" Relationship="Self.FK__Counters__UserId__286302EC" FromRole="Users" ToRole="Counters" />
+          <NavigationProperty Name="Donations" Relationship="Self.FK__Donations__UserI__32E0915F" FromRole="Users" ToRole="Donations" />
+          <NavigationProperty Name="Facebooks" Relationship="Self.FK__Facebook__UserId__2D27B809" FromRole="Users" ToRole="Facebook" />
+          <NavigationProperty Name="GPlus" Relationship="Self.FK__GPlus__UserId__2B3F6F97" FromRole="Users" ToRole="GPlus" />
+          <NavigationProperty Name="LinkedIns" Relationship="Self.FK__LinkedIn__UserId__2A4B4B5E" FromRole="Users" ToRole="LinkedIn" />
+          <NavigationProperty Name="Locals" Relationship="Self.FK__Local__UserId__2E1BDC42" FromRole="Users" ToRole="Local" />
+          <NavigationProperty Name="Twitters" Relationship="Self.FK__Twitter__UserId__2C3393D0" FromRole="Users" ToRole="Twitter" />
+        </EntityType>
+        <EntityType Name="Facebook">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="FacebookUserId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FacebookAccessToken" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Facebook__UserId__2D27B809" FromRole="Facebook" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="GPlu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="GPlusUserId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="GPlusAccessToken" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="GPlusDisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK__GPlus__UserId__2B3F6F97" FromRole="GPlus" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="LinkedIn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="LinkedInUserId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="LinkedInAccessToken" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK__LinkedIn__UserId__2A4B4B5E" FromRole="LinkedIn" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Local">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="254" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Local__UserId__2E1BDC42" FromRole="Local" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Twitter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="TwitterUserId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TwitterAccessToken" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TwitterDisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Twitter__UserId__2C3393D0" FromRole="Twitter" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Donation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="ProjectId" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="AmountOfDonation" Type="Decimal" Precision="17" Scale="2" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Donations__UserI__32E0915F" FromRole="Donations" ToRole="Users" />
+          <NavigationProperty Name="Main" Relationship="Self.FK__Donations__Proje__31EC6D26" FromRole="Donations" ToRole="Main" />
+        </EntityType>
+        <EntityType Name="Info">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ShortDescription" Type="String" MaxLength="360" FixedLength="false" Unicode="false" />
+          <Property Name="TechnicalDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AnalysisDocumentId" Type="Int32" />
+          <NavigationProperty Name="Main" Relationship="Self.FK__Info__ProjectId__2F10007B" FromRole="Info" ToRole="Main" />
+        </EntityType>
+        <EntityType Name="LikesCounter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="Int32" />
+          <Property Name="LikesGathered" Type="Int32" />
+          <NavigationProperty Name="Main" Relationship="Self.FK__LikesCoun__Proje__300424B4" FromRole="LikesCounter" ToRole="Main" />
+        </EntityType>
+        <EntityType Name="Main">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedByUserId" Type="Int32" />
+          <Property Name="StateId" Type="Int32" />
+          <Property Name="LikeCounterId" Type="Int32" />
+          <Property Name="LikesRequiredTotal" Type="Int32" />
+          <Property Name="DonationsId" Type="Int32" />
+          <Property Name="DonationsRequiredTotal" Type="Decimal" Precision="17" Scale="2" />
+          <Property Name="IconId" Type="Int32" />
+          <NavigationProperty Name="ProjectState" Relationship="Self.FK__Main__StateId__30F848ED" FromRole="Main" ToRole="ProjectState" />
+          <NavigationProperty Name="Counters" Relationship="Self.FK__Counters__Projec__276EDEB3" FromRole="Main" ToRole="Counters" />
+          <NavigationProperty Name="Donations" Relationship="Self.FK__Donations__Proje__31EC6D26" FromRole="Main" ToRole="Donations" />
+          <NavigationProperty Name="Infoes" Relationship="Self.FK__Info__ProjectId__2F10007B" FromRole="Main" ToRole="Info" />
+          <NavigationProperty Name="LikesCounters" Relationship="Self.FK__LikesCoun__Proje__300424B4" FromRole="Main" ToRole="LikesCounter" />
+        </EntityType>
+        <Association Name="FK__Users__Credentia__29572725">
+          <End Role="CredentialsType" Type="Self.CredentialsType" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CredentialsType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="CredentialsTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Main__StateId__30F848ED">
+          <End Role="ProjectState" Type="Self.ProjectState" Multiplicity="0..1" />
+          <End Role="Main" Type="Self.Main" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectState">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Main">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Counters__Projec__276EDEB3">
+          <End Role="Main" Type="Self.Main" Multiplicity="0..1" />
+          <End Role="Counters" Type="Self.Counter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Main">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Counters">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Counters__UserId__286302EC">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Counters" Type="Self.Counter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Counters">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Donations__UserI__32E0915F">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Donations" Type="Self.Donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Donations">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Facebook__UserId__2D27B809">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Facebook" Type="Self.Facebook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Facebook">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GPlus__UserId__2B3F6F97">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="GPlus" Type="Self.GPlu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GPlus">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LinkedIn__UserId__2A4B4B5E">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="LinkedIn" Type="Self.LinkedIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LinkedIn">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Local__UserId__2E1BDC42">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Local" Type="Self.Local" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Local">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Twitter__UserId__2C3393D0">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Twitter" Type="Self.Twitter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Twitter">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Donations__Proje__31EC6D26">
+          <End Role="Main" Type="Self.Main" Multiplicity="0..1" />
+          <End Role="Donations" Type="Self.Donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Main">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Donations">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Info__ProjectId__2F10007B">
+          <End Role="Main" Type="Self.Main" Multiplicity="0..1" />
+          <End Role="Info" Type="Self.Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Main">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Info">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LikesCoun__Proje__300424B4">
+          <End Role="Main" Type="Self.Main" Multiplicity="0..1" />
+          <End Role="LikesCounter" Type="Self.LikesCounter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Main">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LikesCounter">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SoftwareDreamEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CredentialsTypes" EntityType="Self.CredentialsType" />
+          <EntitySet Name="ProjectStates" EntityType="Self.ProjectState" />
+          <EntitySet Name="Counters" EntityType="Self.Counter" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Facebooks" EntityType="Self.Facebook" />
+          <EntitySet Name="GPlus" EntityType="Self.GPlu" />
+          <EntitySet Name="LinkedIns" EntityType="Self.LinkedIn" />
+          <EntitySet Name="Locals" EntityType="Self.Local" />
+          <EntitySet Name="Twitters" EntityType="Self.Twitter" />
+          <EntitySet Name="Donations" EntityType="Self.Donation" />
+          <EntitySet Name="Infoes" EntityType="Self.Info" />
+          <EntitySet Name="LikesCounters" EntityType="Self.LikesCounter" />
+          <EntitySet Name="Mains" EntityType="Self.Main" />
+          <AssociationSet Name="FK__Users__Credentia__29572725" Association="Self.FK__Users__Credentia__29572725">
+            <End Role="CredentialsType" EntitySet="CredentialsTypes" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Main__StateId__30F848ED" Association="Self.FK__Main__StateId__30F848ED">
+            <End Role="ProjectState" EntitySet="ProjectStates" />
+            <End Role="Main" EntitySet="Mains" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Counters__Projec__276EDEB3" Association="Self.FK__Counters__Projec__276EDEB3">
+            <End Role="Main" EntitySet="Mains" />
+            <End Role="Counters" EntitySet="Counters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Counters__UserId__286302EC" Association="Self.FK__Counters__UserId__286302EC">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Counters" EntitySet="Counters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Donations__UserI__32E0915F" Association="Self.FK__Donations__UserI__32E0915F">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Donations" EntitySet="Donations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Facebook__UserId__2D27B809" Association="Self.FK__Facebook__UserId__2D27B809">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Facebook" EntitySet="Facebooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GPlus__UserId__2B3F6F97" Association="Self.FK__GPlus__UserId__2B3F6F97">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="GPlus" EntitySet="GPlus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LinkedIn__UserId__2A4B4B5E" Association="Self.FK__LinkedIn__UserId__2A4B4B5E">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="LinkedIn" EntitySet="LinkedIns" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Local__UserId__2E1BDC42" Association="Self.FK__Local__UserId__2E1BDC42">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Local" EntitySet="Locals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Twitter__UserId__2C3393D0" Association="Self.FK__Twitter__UserId__2C3393D0">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Twitter" EntitySet="Twitters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Donations__Proje__31EC6D26" Association="Self.FK__Donations__Proje__31EC6D26">
+            <End Role="Main" EntitySet="Mains" />
+            <End Role="Donations" EntitySet="Donations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Info__ProjectId__2F10007B" Association="Self.FK__Info__ProjectId__2F10007B">
+            <End Role="Main" EntitySet="Mains" />
+            <End Role="Info" EntitySet="Infoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LikesCoun__Proje__300424B4" Association="Self.FK__LikesCoun__Proje__300424B4">
+            <End Role="Main" EntitySet="Mains" />
+            <End Role="LikesCounter" EntitySet="LikesCounters" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SoftwareDreamModelStoreContainer" CdmEntityContainer="SoftwareDreamEntities">
+          <EntitySetMapping Name="CredentialsTypes">
+            <EntityTypeMapping TypeName="SoftwareDreamModel.CredentialsType">
+              <MappingFragment StoreEntitySet="CredentialsType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectStates">
+            <EntityTypeMapping TypeName="SoftwareDreamModel.ProjectState">
+              <MappingFragment StoreEntitySet="ProjectState">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProjectStateName" ColumnName="ProjectStateName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Counters">
+            <EntityTypeMapping TypeName="SoftwareDreamModel.Counter">
+              <MappingFragment StoreEntitySet="Counters">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserIp" ColumnName="UserIp" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="SoftwareDreamModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CredentialsTypeId" ColumnName="CredentialsTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Facebooks">
+            <EntityTypeMapping TypeName="SoftwareDreamModel.Facebook">
+              <MappingFragment StoreEntitySet="Facebook">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FacebookUserId" ColumnName="FacebookUserId" />
+                <ScalarProperty Name="FacebookAccessToken" ColumnName="FacebookAccessToken" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GPlus">
+            <EntityTypeMapping TypeName="SoftwareDreamModel.GPlu">
+              <MappingFragment StoreEntitySet="GPlus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="GPlusUserId" ColumnName="GPlusUserId" />
+                <ScalarProperty Name="GPlusAccessToken" ColumnName="GPlusAccessToken" />
+                <ScalarProperty Name="GPlusDisplayName" ColumnName="GPlusDisplayName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LinkedIns">
+            <EntityTypeMapping TypeName="SoftwareDreamModel.LinkedIn">
+              <MappingFragment StoreEntitySet="LinkedIn">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LinkedInUserId" ColumnName="LinkedInUserId" />
+                <ScalarProperty Name="LinkedInAccessToken" ColumnName="LinkedInAccessToken" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locals">
+            <EntityTypeMapping TypeName="SoftwareDreamModel.Local">
+              <MappingFragment StoreEntitySet="Local">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Twitters">
+            <EntityTypeMapping TypeName="SoftwareDreamModel.Twitter">
+              <MappingFragment StoreEntitySet="Twitter">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="TwitterUserId" ColumnName="TwitterUserId" />
+                <ScalarProperty Name="TwitterAccessToken" ColumnName="TwitterAccessToken" />
+                <ScalarProperty Name="TwitterDisplayName" ColumnName="TwitterDisplayName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Donations">
+            <EntityTypeMapping TypeName="SoftwareDreamModel.Donation">
+              <MappingFragment StoreEntitySet="Donations">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="AmountOfDonation" ColumnName="AmountOfDonation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Infoes">
+            <EntityTypeMapping TypeName="SoftwareDreamModel.Info">
+              <MappingFragment StoreEntitySet="Info">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="TechnicalDescription" ColumnName="TechnicalDescription" />
+                <ScalarProperty Name="AnalysisDocumentId" ColumnName="AnalysisDocumentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LikesCounters">
+            <EntityTypeMapping TypeName="SoftwareDreamModel.LikesCounter">
+              <MappingFragment StoreEntitySet="LikesCounter">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="LikesGathered" ColumnName="LikesGathered" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mains">
+            <EntityTypeMapping TypeName="SoftwareDreamModel.Main">
+              <MappingFragment StoreEntitySet="Main">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CreatedByUserId" ColumnName="CreatedByUserId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="LikeCounterId" ColumnName="LikeCounterId" />
+                <ScalarProperty Name="LikesRequiredTotal" ColumnName="LikesRequiredTotal" />
+                <ScalarProperty Name="DonationsId" ColumnName="DonationsId" />
+                <ScalarProperty Name="DonationsRequiredTotal" ColumnName="DonationsRequiredTotal" />
+                <ScalarProperty Name="IconId" ColumnName="IconId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
