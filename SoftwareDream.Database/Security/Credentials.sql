@@ -1,3 +1,3 @@
 ﻿CREATE SCHEMA [Credentials]
-    AUTHORIZATION [rnd];
+    AUTHORIZATION [dbo];
 

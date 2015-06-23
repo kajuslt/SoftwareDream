@@ -83,10 +83,6 @@
     <Build Include="Common\Tables\Counters.sql" />
     <Build Include="Classifications\Tables\ProjectState.sql" />
     <Build Include="Classifications\Tables\CredentialsType.sql" />
-    <Build Include="Security\rnd.sql" />
-    <Build Include="Security\ATEALT_julius.rachmanas.sql" />
-    <Build Include="Security\ATEALT_julius_1.rachmanas.sql" />
-    <Build Include="Security\RoleMemberships.sql" />
     <Build Include="Security\Classifications.sql" />
     <Build Include="Security\Common.sql" />
     <Build Include="Security\Credentials.sql" />

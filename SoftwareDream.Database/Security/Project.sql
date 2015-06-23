@@ -1,3 +1,3 @@
 ﻿CREATE SCHEMA [Project]
-    AUTHORIZATION [rnd];
+    AUTHORIZATION [dbo];
 

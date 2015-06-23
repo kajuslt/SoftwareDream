@@ -1,3 +1,3 @@
 ﻿CREATE SCHEMA [Classifications]
-    AUTHORIZATION [rnd];
+    AUTHORIZATION [dbo];
 
