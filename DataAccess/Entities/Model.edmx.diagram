@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="489f3db4af4a4fe88d418cfc96fbf5f4" Name="Diagram1" ZoomLevel="34">
+      <Diagram DiagramId="489f3db4af4a4fe88d418cfc96fbf5f4" Name="Diagram1" ZoomLevel="100">
         <EntityTypeShape EntityType="SoftwareDreamModel.CredentialsType" Width="1.5" PointX="0.75" PointY="12.25" IsExpanded="true" />
         <EntityTypeShape EntityType="SoftwareDreamModel.ProjectState" Width="1.5" PointX="3.75" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="SoftwareDreamModel.Counter" Width="1.5" PointX="8.25" PointY="11.875" IsExpanded="true" />
