@@ -79,15 +79,15 @@ namespace SoftwareDiggers
             //    consumerKey: "",
             //    consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //    appId: "",
-            //    appSecret: "");
+            app.UseFacebookAuthentication(
+                appId: "1596562427298547",
+                appSecret: "86181a7a8784bea6a6e6200ebf1f81b4");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "967628631011-tle9p085v6h0cev8mbvduts0kh4h4ih4.apps.googleusercontent.com",
+                ClientSecret = "shQCYuPiTcGEH52WiyTBEt_M"
+            });
         }
     }
 }
