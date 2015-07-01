@@ -210,9 +210,22 @@
     <Compile Include="Controllers\MeController.cs" />
     <Compile Include="Controllers\StartController.cs" />
     <Compile Include="Controllers\StrollController.cs" />
+    <Compile Include="DAL\ProjectContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Counters.cs" />
+    <Compile Include="Models\CredentialType.cs" />
+    <Compile Include="Models\Donations.cs" />
+    <Compile Include="Models\Facebook.cs" />
+    <Compile Include="Models\Icon.cs" />
+    <Compile Include="Models\Info.cs" />
+    <Compile Include="Models\LinkedIn.cs" />
+    <Compile Include="Models\LocalCredentials.cs" />
+    <Compile Include="Models\Main.cs" />
+    <Compile Include="Models\ProjectState.cs" />
+    <Compile Include="Models\Twitter.cs" />
+    <Compile Include="Models\Users.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
