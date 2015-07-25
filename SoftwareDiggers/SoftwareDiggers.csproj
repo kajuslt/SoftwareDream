@@ -227,7 +227,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Counters.cs" />
+    <Compile Include="Models\UserCounters.cs" />
     <Compile Include="Models\CredentialType.cs" />
     <Compile Include="Models\Donations.cs" />
     <Compile Include="Models\Facebook.cs" />

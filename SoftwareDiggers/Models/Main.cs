@@ -7,8 +7,6 @@ namespace SoftwareDiggers.Models
         public int Id { get; set; }
         public int CreatedByUserId { get; set; }
         public int ProjectStateId { get; set; }
-        //TODO: SITO NEREIKES GREICIAUSIAI, NES VIENAM PROJEKTUI GALI BUTI BEGALINIS SKAICIUS AUKU
-        public int DonationsId { get; set; }
         public decimal DonationsRequiredInTotal { get; set; }
         public int IconId { get; set; }
 

@@ -2,7 +2,7 @@
 
 namespace SoftwareDiggers.Models
 {
-    public class Counters
+    public class UserCounters
     {
         public int Id { get; set; }
         public int UserId { get; set; }
