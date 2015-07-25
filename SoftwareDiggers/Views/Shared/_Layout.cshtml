@@ -1,16 +1,17 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-controller="LandingPageController">
 <head>
     <meta charset="utf-8" />
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title ng-bind="models.pageTitle"></title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/script")
+    @Scripts.Render("~/bundles/AngularApp")
 </head>
-<body>
+<body ng-app="AngularApp">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -23,14 +24,15 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Start", "Index", "Start", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Stroll", "Index", "Stroll", new { area = "HelpPage" }, null)</li>
+                    <li><a href="/#/start">Start</a></li>
+                    <li><a href="/#/stroll">Stroll</a></li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
     <div class="container body-content">
+        <div ng-view></div>
         @RenderBody()
         @RenderSection("SPAViews", required: false)
         <hr />
