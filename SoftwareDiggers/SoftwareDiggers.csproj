@@ -297,6 +297,7 @@
     <Content Include="Scripts\app\Controllers\LandingPageController.js" />
     <Content Include="Scripts\app\Controllers\LoginController.js" />
     <Content Include="Scripts\app\Controllers\RegisterController.js" />
+    <Content Include="Scripts\app\Controllers\StartController.js" />
     <Content Include="Scripts\app\Factories\AuthHttpResponseInterceptor.js" />
     <Content Include="Scripts\app\Factories\LoginFactory.js" />
     <Content Include="Scripts\app\Factories\RegistrationFactory.js" />
@@ -348,6 +349,9 @@
     <Content Include="Views\Start\Index.cshtml" />
     <Content Include="Views\Stroll\Index.cshtml" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
+    <Content Include="Views\Start\_comonData.cshtml" />
+    <Content Include="Views\Start\_platforms.cshtml" />
+    <Content Include="Views\Start\_shortDescription.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
