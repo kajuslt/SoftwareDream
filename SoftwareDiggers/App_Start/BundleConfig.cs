@@ -21,9 +21,12 @@ namespace SoftwareDiggers
                 "~/Scripts/angular.js",
                 "~/Scripts/angular-route.js"));
             bundles.Add(new ScriptBundle("~/bundles/AngularApp")
+                .Include("~/Scripts/ng-infinite-scroll.js")
                 .IncludeDirectory("~/Scripts/app/Controllers", "*.js")
                 .IncludeDirectory("~/Scripts/app/Factories", "*.js")
-                .Include("~/Scripts/app/AngularApp.js"));
+                .Include("~/Scripts/app/AngularApp.js")
+                
+                );
 
             bundles.Add(new ScriptBundle("~/script").Include(
                 "~/Scripts/script.js"));
@@ -42,6 +45,9 @@ namespace SoftwareDiggers
             bundles.Add(new StyleBundle("~/Content/css").Include(
                  "~/Content/bootstrap.css",
                  "~/Content/Site.css"));
+            bundles.IgnoreList.Clear();
+
+            
         }
     }
 }

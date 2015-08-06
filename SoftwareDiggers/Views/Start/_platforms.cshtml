@@ -1,1 +1,30 @@
-﻿platform
+﻿<fieldset>
+    <div>
+        Base platform
+    </div>
+    <div>
+        <select ng-model="basePlatform.id" convert-to-number>
+            <option value="0">Windows</option>
+            <option value="1">Mobile</option>
+            <option value="2">Web</option>
+        </select>
+    </div>
+    <div>
+        OS/Browser
+    </div>
+    <div>
+        <select ng-model="os.id" convert-to-number>
+            <option value="0">iOS</option>
+            <option value="1">Android</option>
+            <option value="2">Blackberry</option>
+        </select>
+    </div>
+    <div>
+        <select ng-model="browser.id" convert-to-number>
+            <option value="0">IE</option>
+            <option value="1">Firefox</option>
+            <option value="2">Chrome</option>
+            <option value="2">Safari</option>
+        </select>
+    </div>
+</fieldset>
