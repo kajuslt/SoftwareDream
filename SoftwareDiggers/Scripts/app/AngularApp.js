@@ -57,15 +57,28 @@ AngularApp.factory('Reddit', function ($http) {
         if (this.busy) return;
         this.busy = true;
 
-        var url = "https://localhost:44300/Stroll/Projects" + this.after + "&jsonp=JSON_CALLBACK";
-        $http.jsonp(url).success(function (data) {
-            var items = data.data.children;
-            for (var i = 0; i < items.length; i++) {
-                this.items.push(items[i].data);
+        var url = "https://localhost:44300/Stroll/Projects";
+        var t = this;
+        $.ajax({
+            url: url,
+            success: function (items) {
+                console.log(items);
+                for (var i = 0; i < items.length; i++) {
+                    t.items.push(items[i]);
+                }
+                t.after = t.items[t.items.length - 1].id;
+                t.busy = false;
             }
-            this.after = "t3_" + this.items[this.items.length - 1].id;
-            this.busy = false;
-        }.bind(this));
+        }).bind(this);
+       //var qq= $http.jsonp(url).success(function (data) {
+       //     var items = data.data.children;
+       //     for (var i = 0; i < items.length; i++) {
+       //         this.items.push(items[i].data);
+       //     }
+       //     this.after = "t3_" + this.items[this.items.length - 1].id;
+       //     this.busy = false;
+       //});
+       //console.log(qq);
     };
 
     return Reddit;

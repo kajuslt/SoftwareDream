@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace SoftwareDiggers.Controllers
 {
@@ -8,23 +9,15 @@ namespace SoftwareDiggers.Controllers
         {
             return PartialView();
         }
-        public ActionResult Projects(int? after, string jsonp)
+        public ActionResult Projects(string jsonp,int after=1)
         {
-            object[] asdasd = new object[]
+            List<object> a = new List<object>();
+            for (int i = after; i <= after + 100; i++)
             {
-                new {kind = "qqqq", data = "sdsd56554sd"},
-                new {kind = "qqqq", data = "sdsČĘČĘdsd"},
-                new {kind = "qqqq", data = "sdsdsd"},
-                new {kind = "qqqq", data = "sdsdsWEd"},
-                new {kind = "qqqq", data = "sdsdsWEd"},
-                new {kind = "qqqq", data = "sdsdWEsd"},
-                new {kind = "qqqq", data = "54654ED"},
-                new {kind = "qqqq", data = "sdsdsWEd"},
-                new {kind = "qqqq", data = "54454"},
-                new {kind = "qqqq", data = "sdsdWEsd"}
+                a.Add(new {id=i, kind = "qqqq"+i, data = "sdsd56554sd"+i});
+            }
 
-            };
-            return Json(asdasd,JsonRequestBehavior.AllowGet);
+            return Json(a,JsonRequestBehavior.AllowGet);
         }
          
     }
