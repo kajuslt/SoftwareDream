@@ -56,29 +56,16 @@ AngularApp.factory('Reddit', function ($http) {
     Reddit.prototype.nextPage = function () {
         if (this.busy) return;
         this.busy = true;
-
-        var url = "https://localhost:44300/Stroll/Projects";
-        var t = this;
-        $.ajax({
-            url: url,
-            success: function (items) {
-                console.log(items);
-                for (var i = 0; i < items.length; i++) {
-                    t.items.push(items[i]);
-                }
-                t.after = t.items[t.items.length - 1].id;
-                t.busy = false;
+        
+        var url = "https://localhost:44300/Stroll/Projects?after=" + this.after;
+        $http.get(url).success(function (data) {
+            var items = data;
+            for (var i = 0; i < items.length; i++) {
+                this.items.push(items[i].data);
             }
-        }).bind(this);
-       //var qq= $http.jsonp(url).success(function (data) {
-       //     var items = data.data.children;
-       //     for (var i = 0; i < items.length; i++) {
-       //         this.items.push(items[i].data);
-       //     }
-       //     this.after = "t3_" + this.items[this.items.length - 1].id;
-       //     this.busy = false;
-       //});
-       //console.log(qq);
+            this.after = items[items.length - 1].id;
+            this.busy = false;
+        }.bind(this));
     };
 
     return Reddit;

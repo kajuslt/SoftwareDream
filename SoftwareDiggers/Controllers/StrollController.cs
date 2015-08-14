@@ -9,8 +9,9 @@ namespace SoftwareDiggers.Controllers
         {
             return PartialView();
         }
-        public ActionResult Projects(string jsonp,int after=1)
+        public ActionResult Projects(int after=1)
         {
+            after++;//nekist angularui tu paciu id
             List<object> a = new List<object>();
             for (int i = after; i <= after + 100; i++)
             {
