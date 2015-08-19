@@ -23,11 +23,15 @@
 
 <div ng-app='AngularApp' ng-controller='StrollController' id="projectsContainer">
     <div infinite-scroll='reddit.nextPage()' infinite-scroll-disabled='reddit.busy' infinite-scroll-distance='1'>
-        <div ng-repeat='item in reddit.items'>
-            <span class='score'>{{item.data}}</span>
-            <small>
-                by {{item.kind}}
-            </small>
+        <div class="shortProject" ng-repeat='item in reddit.items'>
+            <img src="{{item.ProjectTypeIconId}}" />
+            <h2>{{item.ProjectName}}</h2>
+            <span class='short'>{{item.ShortPtojectDescription}}</span>
+            <div class="amounts">
+                <div class="gathered">{{item.AmountGathered}}</div>/
+                <div class="total">{{item.AmountTotal}}</div>
+            </div>
+            <a href="{{item.Id}}">more</a>
             <div style='clear: both;'></div>
         </div>
         <div ng-show='reddit.busy'>Loading data...</div>
