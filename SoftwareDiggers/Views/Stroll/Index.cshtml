@@ -31,7 +31,8 @@
                 <div class="gathered">{{item.AmountGathered}}</div>/
                 <div class="total">{{item.AmountTotal}}</div>
             </div>
-            <a href="{{item.Id}}">more</a>
+            <a href="/#/Donation/{{item.Id}}">Donate</a>
+            <a href="/#/ProjectDetails/{{item.Id}}">more</a>
             <div style='clear: both;'></div>
         </div>
         <div ng-show='reddit.busy'>Loading data...</div>

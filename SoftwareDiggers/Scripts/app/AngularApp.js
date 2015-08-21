@@ -12,30 +12,38 @@ AngularApp.factory('RegistrationFactory', RegistrationFactory);
 
 var configFunction = function ($routeProvider, $httpProvider) {
     $routeProvider.
-        when('/start', {
+        when('/Start', {
             templateUrl: '/Start/Index'
         })
-        .when('/start/_comonData', {
+        .when('/Start/_comonData', {
             templateUrl: '/Start/_comonData'
         })
-        .when('/start/_platforms', {
+        .when('/Start/_platforms', {
             templateUrl: '/Start/_platforms'
         })
-        .when('/start/_shortDescription', {
+        .when('/Start/_shortDescription', {
             templateUrl: '/Start/_shortDescription'
         })
-
-        .when('/stroll', {
+        .when('/Donation', {
+            templateUrl: '/Donation/Index'
+        })
+        .when('/Donation/:Id', {
+            templateUrl: function (params) { return '/Donation/Index/' + params.Id; }
+        })
+        .when('/ProjectDetails/:Id', {
+            templateUrl: function(params) { return '/ProjectDetails/Index/' + params.Id; }
+            })
+        .when('/Stroll', {
             templateUrl: '/Stroll/Index'
         })/*
         .when('/routeTwo/:donuts', {
             templateUrl: function (params) { return '/routesDemo/two?donuts=' + params.donuts; }
         })*/
-        .when('/login', {
+        .when('/Login', {
             templateUrl: '/Account/Login',
             controller: LoginController
         })
-        .when('/register', {
+        .when('/Register', {
             templateUrl: '/Account/Register',
             controller: RegisterController
         });
