@@ -1,18 +1,26 @@
-﻿var AngularApp = angular.module('AngularApp', ['ngRoute', 'infinite-scroll']);
+﻿var AngularApp = angular.module('AngularApp', ['ngRoute', 'infinite-scroll', 'ngAnimate']);
 
+AngularApp.controller('BaseController', BaseController);
 AngularApp.controller('LandingPageController', LandingPageController);
 AngularApp.controller('StartController', StartController);
 AngularApp.controller('LoginController', LoginController);
 AngularApp.controller('RegisterController', RegisterController);
-AngularApp.controller('StrollController',StrollController);
+AngularApp.controller('ProjectsController', ProjectsController);
+AngularApp.controller('SearchController', SearchController);
+
 
 AngularApp.factory('AuthHttpResponseInterceptor', AuthHttpResponseInterceptor);
 AngularApp.factory('LoginFactory', LoginFactory);
 AngularApp.factory('RegistrationFactory', RegistrationFactory);
+AngularApp.factory('ProjectsFactory', ProjectsFactory);
+AngularApp.factory('SearchFactory', SearchFactory);
 
-var configFunction = function ($routeProvider, $httpProvider) {
-    $routeProvider.
-        when('/Start', {
+var configFunction = function ($routeProvider, $httpProvider, $locationProvider) {
+    $routeProvider
+        .when('/', {
+            templateUrl: '/Start/Index'
+        })
+        .when('/Start', {
             templateUrl: '/Start/Index'
         })
         .when('/Start/_comonData', {
@@ -34,11 +42,11 @@ var configFunction = function ($routeProvider, $httpProvider) {
             templateUrl: function(params) { return '/ProjectDetails/Index/' + params.Id; }
             })
         .when('/Stroll', {
-            templateUrl: '/Stroll/Index'
-        })/*
-        .when('/routeTwo/:donuts', {
-            templateUrl: function (params) { return '/routesDemo/two?donuts=' + params.donuts; }
-        })*/
+            templateUrl: '/Projects/Index'
+        })
+        .when('/Search/:phrase', {
+            templateUrl: function (params) { return '/Projects/Search?phrase=' + params.phrase; },
+        })
         .when('/Login', {
             templateUrl: '/Account/Login',
             controller: LoginController
@@ -49,32 +57,9 @@ var configFunction = function ($routeProvider, $httpProvider) {
         });
 
     $httpProvider.interceptors.push('AuthHttpResponseInterceptor');
+    //$locationProvider.html5Mode(true);//hash tagai
 }
-configFunction.$inject = ['$routeProvider', '$httpProvider'];
+configFunction.$inject = ['$routeProvider', '$httpProvider', '$locationProvider'];
 
 AngularApp.config(configFunction);
 
-AngularApp.factory('Reddit', function ($http) {
-    var Reddit = function () {
-        this.items = [];
-        this.busy = false;
-        this.after = '';
-    };
-
-    Reddit.prototype.nextPage = function () {
-        if (this.busy) return;
-        this.busy = true;
-        
-        var url = "https://localhost:44300/Stroll/Projects?after=" + this.after;
-        $http.get(url).success(function (data) {
-            var items = data;
-            for (var i = 0; i < items.length; i++) {
-                this.items.push(items[i]);
-            }
-            this.after = items[items.length - 1].Id;
-            this.busy = false;
-        }.bind(this));
-    };
-
-    return Reddit;
-});

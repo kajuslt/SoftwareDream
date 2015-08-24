@@ -34,3 +34,14 @@ textarea {
         padding: 10px 15px;
     }
 }
+
+/* The starting CSS styles for the enter animation */
+.ng-enter {
+  transition:0.5s linear all;
+  opacity:0;
+}
+
+/* The finishing CSS styles for the enter animation */
+.ng-enter.ng-enter-active {
+  opacity:1;
+}

@@ -13,17 +13,9 @@
     </form>
 </div>
 
-@*
-<div ng-app='AngularApp' ng-controller='StrollController' id="projectsContainer">
-    <div infinite-scroll='loadMore()' infinite-scroll-distance='2'>
-        <div ng-repeat='image in images'></div>
-        <img ng-repeat='image in images' ng-src='http://placehold.it/225x250&text={{image}}'>
-    </div>
-</div>*@
-
-<div ng-app='AngularApp' ng-controller='StrollController' id="projectsContainer">
-    <div infinite-scroll='reddit.nextPage()' infinite-scroll-disabled='reddit.busy' infinite-scroll-distance='1'>
-        <div class="shortProject" ng-repeat='item in reddit.items'>
+<div ng-app='AngularApp' ng-controller='ProjectsController' id="projectsContainer">
+    <div infinite-scroll='projects.nextPage()' infinite-scroll-disabled='projects.busy' infinite-scroll-distance='1'>
+        <div class="shortProject" ng-repeat='item in projects.items'>
             <img src="{{item.ProjectTypeIconId}}" />
             <h2>{{item.ProjectName}}</h2>
             <span class='short'>{{item.ShortPtojectDescription}}</span>
@@ -35,6 +27,6 @@
             <a href="/#/ProjectDetails/{{item.Id}}">more</a>
             <div style='clear: both;'></div>
         </div>
-        <div ng-show='reddit.busy'>Loading data...</div>
+        <div ng-show='projects.busy'>Loading data...</div>
     </div>
 </div>

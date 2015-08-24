@@ -29,6 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -224,7 +225,7 @@
     <Compile Include="Controllers\MeController.cs" />
     <Compile Include="Controllers\ProjectDetailsController.cs" />
     <Compile Include="Controllers\StartController.cs" />
-    <Compile Include="Controllers\StrollController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="DAL\ProjectContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -289,25 +290,32 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Scripts\angular-animate.js" />
+    <Content Include="Scripts\angular-animate.min.js" />
+    <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular-route.js" />
     <Content Include="Scripts\angular-route.min.js" />
+    <Content Include="Scripts\angular-route.min.js.map" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\angular.min.js.map" />
-    <Content Include="Scripts\angular-route.min.js.map" />
+    <Content Include="Scripts\angular-animate.min.js.map" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Icon.png" />
-    <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\app\AngularApp.js" />
     <Content Include="Scripts\app\Controllers\LandingPageController.js" />
     <Content Include="Scripts\app\Controllers\LoginController.js" />
     <Content Include="Scripts\app\Controllers\DonationController.js" />
+    <Content Include="Scripts\app\Controllers\SearchController.js" />
     <Content Include="Scripts\app\Controllers\RegisterController.js" />
     <Content Include="Scripts\app\Controllers\ProjectDetailsController.js" />
+    <Content Include="Scripts\app\Controllers\BaseController.js" />
     <Content Include="Scripts\app\Controllers\StartController.js" />
-    <Content Include="Scripts\app\Controllers\StrollController.js" />
+    <Content Include="Scripts\app\Controllers\ProjectsController.js" />
     <Content Include="Scripts\app\Factories\AuthHttpResponseInterceptor.js" />
     <Content Include="Scripts\app\Factories\LoginFactory.js" />
+    <Content Include="Scripts\app\Factories\SearchFactory.js" />
+    <Content Include="Scripts\app\Factories\ProjectsFactory.js" />
     <Content Include="Scripts\app\Factories\RegistrationFactory.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -357,13 +365,14 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Start\Index.cshtml" />
-    <Content Include="Views\Stroll\Index.cshtml" />
+    <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
     <Content Include="Views\Start\_comonData.cshtml" />
     <Content Include="Views\Start\_platforms.cshtml" />
     <Content Include="Views\Start\_shortDescription.cshtml" />
     <Content Include="Views\ProjectDetails\Index.cshtml" />
     <Content Include="Views\Donation\Index.cshtml" />
+    <Content Include="Views\Projects\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

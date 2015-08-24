@@ -13,6 +13,7 @@
     @Scripts.Render("~/bundles/AngularApp")
     @Scripts.Render("~/bundles/bootstrap")
     @*@RenderSection("Scripts", required: false)*@
+    <base href="/">
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -23,13 +24,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Software Diggers", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a class="navbar-brand" href="/#/" >Software Diggers</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="/#/Start">Start</a></li>
                     <li><a href="/#/Stroll">Stroll</a></li>
                 </ul>
+                <form id="searchFrom" novalidate>
+                    <input name="keyword" ng-model="phrase" type="text" />
+                    <input type="submit" alt="Search" ng-click="Search(phrase)" value="Search" />
+                </form>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

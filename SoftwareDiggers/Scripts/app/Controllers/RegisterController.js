@@ -1,4 +1,5 @@
-﻿var RegisterController = function ($scope, $location, RegistrationFactory) {
+﻿var RegisterController = function ($scope, $location, RegistrationFactory, $controller) {
+    $controller('BaseController', { $scope: $scope });
     $scope.registerForm = {
         emailAddress: '',
         password: '',
@@ -18,4 +19,4 @@
     }
 }
 
-RegisterController.$inject = ['$scope', '$location', 'RegistrationFactory'];
+RegisterController.$inject = ['$scope', '$location', 'RegistrationFactory', '$controller'];

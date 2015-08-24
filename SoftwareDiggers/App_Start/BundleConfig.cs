@@ -25,6 +25,7 @@ namespace SoftwareDiggers
                 .IncludeDirectory("~/Scripts/app/Controllers", "*.js")
                 .IncludeDirectory("~/Scripts/app/Factories", "*.js")
                 .Include("~/Scripts/app/AngularApp.js")
+                .Include("~/Scripts/angular-animate.js")
                 
                 );
 
