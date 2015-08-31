@@ -1,14 +1,22 @@
 ﻿<div ng-controller="StartController">
-    <ul class="nav nav-tabs">
-        <li role="presentation" class="active"><a id="link-1" href ng-click="selection = '_comonData'">Step 1</a></li>
-        <li role="presentation"><a id="link-2" href ng-click="selection = '_platforms'">Step 2</a></li>
-        <li role="presentation"><a id="link-3" href ng-click="selection = '_shortDescription'">Step 3</a></li>
-    </ul>
-    <ul class="nav nav-tabs"
-        ng-switch on="selection">
-        <li class="animate-switch" ng-switch-when="_comonData">@Html.Action("_comonData")</li>
-        <li class="animate-switch" ng-switch-when="_platforms">@Html.Action("_platforms")</li>
-        <li class="animate-switch" ng-switch-when="_shortDescription">@Html.Action("_shortDescription")</li>
-        <li class="animate-switch" ng- ng-switch-default>default</li>
-</ul>
-    </div>
+    <form name="userForm" ng-submit="submitForm()" novalidate>
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a id="link-1" href ng-click="selection = '_comonData'">Step 1</a></li>
+            <li role="presentation"><a id="link-2" href ng-click="selection = '_platforms'">Step 2</a></li>
+            <li role="presentation"><a id="link-3" href ng-click="selection = '_shortDescription'">Step 3</a></li>
+        </ul>
+        <ul class="nav nav-tabs"
+            ng-switch on="selection">
+            <li class="animate-switch" ng-switch-when="_comonData">@Html.Action("_comonData")</li>
+            <li class="animate-switch" ng-switch-when="_platforms">@Html.Action("_platforms")</li>
+            <li class="animate-switch" ng-switch-when="_shortDescription">@Html.Action("_shortDescription")</li>
+            <li class="animate-switch" ng->
+                <a href ng-click="$parent.selection = '_comonData'" ng-switch-when="_platforms">back</a>
+                <a href ng-click="$parent.selection = '_platforms'" ng-switch-when="_shortDescription">back</a>
+                <a href ng-click="$parent.selection = '_platforms'" ng-switch-when="_comonData">next</a>
+                <a href ng-click="$parent.selection = '_shortDescription'" ng-switch-when="_platforms">next</a>
+                <input ng-click="$parent.submitForm('@Url.Action("Start", "StartProject")')" ng-switch-when="_shortDescription" type="submit" value="Finish"/>
+            </li>
+        </ul>
+    </form>
+</div>

@@ -3,20 +3,18 @@
         Project Name
     </div>
     <div>
-        <input type="text" ng-model="projectNameString">
+        <input type="text" ng-model="projectInfoForm.projectNameString">
     </div>
-    <div>
-        Main purpose
-    </div>
-    <div>
-        <input type="text" ng-model="mainPurposeString">
-    </div>
-    <div>
-        Additional purpose
-    </div>
-    <div>
-        <textarea ng-model="additionalPurposeString" name="string"></textarea>
-    </div>
+    <div class="form-group" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }">
+        <label>Main purpose</label>
+        <input type="text" ng-model="projectInfoForm.mainPurposeString">
+     </div>
+      <div>
+            Additional purpose
+        </div>
+        <div>
+            <textarea ng-model="projectInfoForm.additionalPurposeString" name="string"></textarea>
+        </div>
 </fieldset>
 
 
